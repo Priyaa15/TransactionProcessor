@@ -63,7 +63,50 @@ class transaction_processor:
                 })
             
             self.transactions = cleaned
-            logger.info(f"Successfully cleaned transactions: {len(cleaned)} transactions")
+            logger.info(f"Successfully cleaned transactions: {len(cleaned)} transactions. Found {len(self.error_records)}")
+
+        #3. Calculate daily Transaction summary
+
+        def calc_daily_trasaction_summary(Self):
+            """calculate daily transaction summaries"""
+            daily_totals = {} #empty dict
+            
+            for tx in self.transactions:
+                date = datetime.strptime(tx['timestamp', '%y-%m-%d %H:%M:%S']).date
+                date_iso = date.isoformat() # extract date into iso format
+
+                if date_iso not in daily_totals: # if date doesn't exist, then add the following schema
+                    daily_totals[date_iso] = {
+                        'total_debit' :0,
+                        'total_credit':0,
+                        'successful_tx':0,
+                        'failed_tx':0,
+                        'total_tx':0,
+                        'avg_tx':0
+                    }
+                    #update daily debit/credit
+
+                    if tx['transaction_type'] == 'debit':
+                        daily_totals[date_iso]['total_debit'] += tx['amount']
+                    else:
+                        daily_totals[date_iso]['total_credit'] += tx['amount']
+
+                    if tx['status'] == 'posted':
+                        daily_totals[date_iso]['successful_tx'] += 1
+                    else:
+                        daily_totals[date_iso]['failed_tx'] += 1
+                    
+                    daily_totals[date_iso]["total_tx"] += 1 # ALL TOTALS
+
+                    #calc avg
+                    for date in daily_totals:
+                        total_value = daily_totals[date]['total_debit'] + daily_totals[date]['total_credit']
+                        total_tx = daily_totals[date['total_tx']]
+                        daily_totals[date]['avg_transactions'] = round (total_value/total_tx)
+
+                    return daily_totals
+
+
 
 
         
