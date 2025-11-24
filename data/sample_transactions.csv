@@ -1,0 +1,13 @@
+transaction_id,timestamp,account_id,account_name,transaction_type,amount,currency,merchant,category,status,description,balance_after,source
+TXN0001,2025-11-24T09:15:30Z,ACCT1001,John Doe,debit,45.67,USD,Starbucks,coffee,posted,"Coffee purchase",1000.33,bank_api
+TXN0002,2025-11-24 10:00:00,ACCT1002,Jane Smith,credit,1500.00,USD,ACME Corp,salary,posted,"Monthly salary",2500.00,hr_system
+TXN0003,2025-11-24T11:30:00Z,ACCT1001,John Doe,debit,25.00,USD,ATM,withdrawal,posted,"ATM withdrawal",975.33,atm_network
+TXN0004,2025-11-24T12:00:00Z,ACCT1003,Bob Lee,credit,200.50,EUR,Freelance Inc,invoice,posted,"Invoice payment",1200.75,payments_api
+TXN0005,2025-02-30T12:00:00,ACCT1004,Alice Wu,debit,12.00,USD,,groceries,failed,"Missing merchant field (invalid date)",488.00,retailer_feed
+TXN0006,2025-11-24 13:45:00,ACCT1002,Jane Smith,debit,-5.50,USD,RefundCo,refund,refunded,"Refund processed",2494.50,refund_service
+TXN0007,2025-11-24T14:00:00Z,ACCT1005,Charlie K,debit,1234.56789,USD,ElectroMart,electronics,pending,"High precision amount",5000.43211,store_api
+TXN0008,2025-11-24T14:05:00Z,ACCT1001,John Doe,credit,0.00,USD,Promotion,bonus,posted,"Promotional credit",975.33,marketing
+TXN0009,2025-11-24T15:00:00Z,ACCT1006,,debit,60.00,USD,GasStation,fuel,posted,"No account name",940.00,card_processor
+TXN0010,2025-11-24T15:00:00Z,ACCT1006,,debit,60.00,USD,GasStation,fuel,posted,"Duplicate transaction id test",940.00,card_processor
+TXN0011,2025-11-24T16:00:00,ACCT1007,Dana P,credit,N/A,USD,Employer,salary,posted,"Amount missing as N/A",3000.00,hr_system
+TXN0010,2025-11-24T15:05:00Z,ACCT1006,,debit,60.00,USD,GasStation,fuel,posted,"Duplicate TXN0010 second record",880.00,card_processor
